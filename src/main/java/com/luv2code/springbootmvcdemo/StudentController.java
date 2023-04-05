@@ -2,7 +2,9 @@ package com.luv2code.springbootmvcdemo;
 
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,11 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/student")
 public class StudentController {
 	
-	@Value("#{countryOptions}")
-	private Map<String, String> countryOptions;
-	
-	@Value("#{os}")
-	private Map<String, String> operatingSystemOptions;
+	@Autowired
+	private Environment env;
 	
 	@RequestMapping("/showForm")
 	public String showForm(Model theModel) {
@@ -28,10 +27,10 @@ public class StudentController {
 		theModel.addAttribute("student", theStudent);
 		
 		// add the country options to the model 
-		theModel.addAttribute("theCountryOptions", countryOptions);
+		theModel.addAttribute("theCountryOptions", env.getProperty("countryOptions"));
 		
 		// add the operating systems to the model
-		theModel.addAttribute("theOSOptions", operatingSystemOptions);
+		theModel.addAttribute("theOSOptions", env.getProperty("os"));
 		
 		return "student-form";
 		
