@@ -11,9 +11,9 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:operatingsystems.properties")
 public class PropertiesLoader {
 	
-	@Value("#{countryOptions}")
+	@Value("#{${countries}}")
 	private Map<String, String> countryOptions;
 	
-	@Value("#{os}")
+	@Value("#{${opSys}}")
 	private Map<String, String> operatingSystemOptions;
 }

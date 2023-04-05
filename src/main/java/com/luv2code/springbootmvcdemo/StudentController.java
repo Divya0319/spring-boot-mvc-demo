@@ -27,10 +27,10 @@ public class StudentController {
 		theModel.addAttribute("student", theStudent);
 		
 		// add the country options to the model 
-		theModel.addAttribute("theCountryOptions", env.getProperty("countryOptions"));
+		theModel.addAttribute("theCountryOptions", env.getProperty("countries"));
 		
 		// add the operating systems to the model
-		theModel.addAttribute("theOSOptions", env.getProperty("os"));
+		theModel.addAttribute("theOSOptions", env.getProperty("opSys"));
 		
 		return "student-form";
 		
