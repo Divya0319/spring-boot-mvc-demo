@@ -2,6 +2,8 @@ package com.luv2code.springbootmvcdemo;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
+	
+	private Logger myLogger = LoggerFactory.getLogger(CustomerController.class);
 	
 	// add an initbinder .. to convert trim input string
 	// remove leading and trailing whitespaces, and trim string down to null if has only whitespace
@@ -45,9 +49,11 @@ public class CustomerController {
 			@Valid @ModelAttribute("customer") Customer theCustomer,
 			BindingResult theBindingResult) { //  Spring will store the result of validation in BindingResult object
 		
-		System.out.println("Last name: |" + theCustomer.getLastName() + "|");
+		myLogger.info("Last name: | {} |", theCustomer.getLastName());
 		
-		System.out.println("Binding result: " + theBindingResult);
+		myLogger.info("Binding result: {}", theBindingResult);
+				
+		myLogger.info("\n\n\n");
 		
 		System.out.println("\n\n\n");
 		
